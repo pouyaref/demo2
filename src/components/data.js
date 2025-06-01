@@ -55,7 +55,7 @@ export const menuItems = [
     price: 95000,
     category: "salad",
     image: "https://images.unsplash.com/photo-1546793665-c74683f339c1",
-    rating: 4.3,
+    rating: 4.3,  
     prepTime: 10,
     calories: 320,
     ingredients: ["کاهو رومی", "سس سزار", "پنیر پارمزان", "کروتون"]

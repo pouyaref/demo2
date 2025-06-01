@@ -452,60 +452,7 @@ const MenuPage = () => {
       {/* Main Content */}
       <main className="p-4 max-w-md mx-auto pb-24">
         {/* Featured Items Carousel */}
-        {selectedCategory === "all" && searchQuery === "" && (
-          <div className="mb-6">
-            <h2 className="text-lg font-bold text-gray-800 mb-3">پیشنهادهای ویژه</h2>
-            <div className="carousel carousel-center space-x-4 space-x-reverse p-4 bg-white rounded-xl shadow-sm">
-              {featuredItems.map((item) => (
-                <motion.div 
-                  key={item.id}
-                  className="carousel-item w-48 flex flex-col"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setSelectedItem(item)}
-                >
-                  <div className="relative w-full h-32 rounded-xl overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute bottom-2 left-2 badge badge-accent border-0 text-white">
-                      ویژه
-                    </div>
-                  </div>
-                  <div className="mt-2 px-1">
-                    <h3 className="font-medium text-sm line-clamp-1">{item.name}</h3>
-                    <p className="text-xs text-gray-500">{item.price.toLocaleString()} تومان</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Category Tabs */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-bold text-gray-800">منو</h2>
-            <span className="text-sm text-gray-500">
-              {filteredItems.length} آیتم
-            </span>
-          </div>
-          
-          <div className="tabs tabs-boxed bg-gray-100 p-1">
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                className={`tab flex-1 ${selectedCategory === cat.id ? "tab-active bg-white shadow-sm" : ""}`}
-                onClick={() => setSelectedCategory(cat.id)}
-              >
-                <span className="ml-1">{cat.icon}</span>
-                {cat.name}
-              </button>
-            ))}
-          </div>
-        </div>
+   
 
         {/* Menu Items */}
         <LayoutGroup>
