@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+body{
+    font-family: "Iran";
+}
+
+@font-face{
+    font-family:"Iran" ;
+    src: url(./384.Font.Farsi/Homa.ttf);
+}
