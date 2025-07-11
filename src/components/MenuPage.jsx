@@ -16,7 +16,8 @@ import {
   FiDroplet,
   FiZap,
   FiCheckCircle,
-  FiHome
+  FiHome,
+  FiUser
 } from "react-icons/fi";
 import { categories, menuItems } from "./data";
 import "swiper/css";
@@ -37,7 +38,7 @@ const MenuPage = () => {
   const [orderId, setOrderId] = useState(null);
   const [timeRemaining, setTimeRemaining] = useState(0);
 
-  // Expanded categories data
+  // Expanded categories data with Persian names
   const expandedCategories = [
     { id: "all", name: "همه منو", icon: "✨" },
     { id: "fast-food", name: "فست فود", icon: "🍔" },
@@ -160,36 +161,43 @@ const MenuPage = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center p-4">
         <motion.div 
-          className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 w-full max-w-md border border-white/30"
+          className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-6 w-full max-w-md border border-white/30"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           <div className="text-center mb-6">
             <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-300 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <FiCoffee size={32} className="text-white" />
+              <FiUser size={32} className="text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">شماره میز خود را وارد کنید</h2>
-            <p className="text-gray-600">لطفاً شماره میز خود را برای تحویل سفارش وارد نمایید</p>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">انتخاب میز</h2>
+            <p className="text-gray-600">لطفاً شماره میز خود را انتخاب نمایید</p>
           </div>
           
           <div className="mb-6">
-            <label className="block text-gray-700 mb-2 text-right">شماره میز</label>
-            <input
-              type="number"
-              className="input w-full bg-white border border-gray-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 rounded-xl shadow-sm text-center text-xl font-bold"
-              placeholder="مثال: 12"
-              value={tableNumber}
-              onChange={(e) => setTableNumber(e.target.value)}
-              min="1"
-              max="50"
-            />
+            <div className="grid grid-cols-5 gap-3">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                <motion.button
+                  key={num}
+                  onClick={() => setTableNumber(num)}
+                  className={`p-3 rounded-xl text-lg font-medium transition-all ${
+                    tableNumber === num 
+                      ? "bg-gradient-to-br from-amber-500 to-amber-400 text-white shadow-md"
+                      : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
+                  }`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {num}
+                </motion.button>
+              ))}
+            </div>
           </div>
           
           <div className="flex space-x-3">
             <motion.button
               onClick={() => setOrderStep('menu')}
-              className="btn btn-ghost flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50"
+              className="btn btn-ghost flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -197,7 +205,7 @@ const MenuPage = () => {
             </motion.button>
             <motion.button
               onClick={() => setOrderStep('confirm')}
-              className="btn flex-1 bg-gradient-to-r from-amber-500 to-amber-400 border-0 text-white shadow-md hover:shadow-lg disabled:opacity-50"
+              className="btn flex-1 bg-gradient-to-r from-amber-500 to-amber-400 border-0 text-white shadow-md hover:shadow-lg disabled:opacity-50 rounded-xl"
               disabled={!tableNumber}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
@@ -214,7 +222,7 @@ const MenuPage = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center p-4">
         <motion.div 
-          className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 w-full max-w-md border border-white/30"
+          className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-6 w-full max-w-md border border-white/30"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -260,7 +268,7 @@ const MenuPage = () => {
           <div className="flex space-x-3">
             <motion.button
               onClick={() => setOrderStep('table')}
-              className="btn btn-ghost flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50"
+              className="btn btn-ghost flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -268,7 +276,7 @@ const MenuPage = () => {
             </motion.button>
             <motion.button
               onClick={placeOrder}
-              className="btn flex-1 bg-gradient-to-r from-emerald-500 to-emerald-400 border-0 text-white shadow-md hover:shadow-lg"
+              className="btn flex-1 bg-gradient-to-r from-emerald-500 to-emerald-400 border-0 text-white shadow-md hover:shadow-lg rounded-xl"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -287,7 +295,7 @@ const MenuPage = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex flex-col items-center justify-center p-4">
         <motion.div 
-          className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 w-full max-w-md border border-white/30 text-center"
+          className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-6 w-full max-w-md border border-white/30 text-center"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -328,7 +336,7 @@ const MenuPage = () => {
           
           <motion.button
             onClick={() => setOrderStep('menu')}
-            className="btn w-full bg-gradient-to-r from-emerald-500 to-emerald-400 border-0 text-white shadow-md hover:shadow-lg"
+            className="btn w-full bg-gradient-to-r from-emerald-500 to-emerald-400 border-0 text-white shadow-md hover:shadow-lg rounded-xl"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -477,7 +485,7 @@ const MenuPage = () => {
                   setSearchQuery("");
                   setSelectedCategory("all");
                 }}
-                className="btn btn-ghost mt-4 text-amber-600 hover:bg-amber-50"
+                className="btn btn-ghost mt-4 text-amber-600 hover:bg-amber-50 rounded-xl"
               >
                 پاک کردن فیلترها
               </button>
@@ -624,7 +632,7 @@ const MenuPage = () => {
               <div className="absolute top-4 left-4 z-10">
                 <motion.button
                   onClick={() => setSelectedItem(null)}
-                  className="btn btn-circle btn-ghost bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white"
+                  className="btn btn-circle btn-ghost bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white rounded-xl"
                   whileHover={{ rotate: -5 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -734,7 +742,7 @@ const MenuPage = () => {
                         {selectedItem.ingredients.map((ing, i) => (
                           <motion.span
                             key={i}
-                            className="badge bg-gray-100 border border-gray-200/50 text-gray-700 hover:bg-white transition-all"
+                            className="badge bg-gray-100 border border-gray-200/50 text-gray-700 hover:bg-white transition-all rounded-xl"
                             whileHover={{ y: -2 }}
                           >
                             {ing}
@@ -768,7 +776,7 @@ const MenuPage = () => {
                       addToCart(selectedItem);
                       setSelectedItem(null);
                     }}
-                    className="btn w-full bg-gradient-to-r from-amber-500 to-amber-400 border-0 text-white shadow-lg hover:shadow-xl relative overflow-hidden group"
+                    className="btn w-full bg-gradient-to-r from-amber-500 to-amber-400 border-0 text-white shadow-lg hover:shadow-xl relative overflow-hidden group rounded-xl"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -816,7 +824,7 @@ const MenuPage = () => {
                   </motion.h2>
                   <motion.button
                     onClick={() => setIsCartOpen(false)}
-                    className="btn btn-ghost btn-circle text-gray-700 hover:bg-gray-100"
+                    className="btn btn-ghost btn-circle text-gray-700 hover:bg-gray-100 rounded-xl"
                     whileHover={{ rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -836,7 +844,7 @@ const MenuPage = () => {
                     <p className="mb-2 text-gray-600">سبد خرید شما خالی است</p>
                     <motion.button
                       onClick={() => setIsCartOpen(false)}
-                                            className="btn btn-ghost text-amber-600 hover:bg-amber-50"
+                      className="btn btn-ghost text-amber-600 hover:bg-amber-50 rounded-xl"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -881,7 +889,7 @@ const MenuPage = () => {
                             <div className="flex items-center">
                               <motion.button
                                 onClick={() => removeFromCart(item.id)}
-                                className="btn btn-ghost btn-sm text-gray-500 hover:text-red-500"
+                                className="btn btn-ghost btn-sm text-gray-500 hover:text-red-500 rounded-xl"
                                 whileTap={{ scale: 0.9 }}
                               >
                                 <FiMinus size={16} />
@@ -891,7 +899,7 @@ const MenuPage = () => {
                               </span>
                               <motion.button
                                 onClick={() => addToCart(item)}
-                                className="btn btn-ghost btn-sm text-gray-500 hover:text-green-500"
+                                className="btn btn-ghost btn-sm text-gray-500 hover:text-green-500 rounded-xl"
                                 whileTap={{ scale: 0.9 }}
                               >
                                 <FiPlus size={16} />
@@ -924,7 +932,7 @@ const MenuPage = () => {
                           setIsCartOpen(false);
                           setOrderStep('table');
                         }}
-                        className="btn w-full bg-gradient-to-r from-amber-500 to-amber-400 border-0 text-white shadow-lg hover:shadow-xl relative overflow-hidden group"
+                        className="btn w-full bg-gradient-to-r from-amber-500 to-amber-400 border-0 text-white shadow-lg hover:shadow-xl rounded-xl"
                         whileHover={{ y: -2 }}
                         whileTap={{ scale: 0.98 }}
                       >
